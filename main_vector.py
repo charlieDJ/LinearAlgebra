@@ -7,4 +7,12 @@ if __name__ == '__main__':
 
     # 零向量
     zero2 = Vector.zero(2)
-    print(zero2)
+    print('零向量：{}'.format(zero2))
+    norm = u.norm()
+    print('u的模为：{}'.format(norm))
+    normlize = u.normlize()
+    print('u的归一化：{}'.format(normlize))
+    try:
+        zero2.normlize()
+    except ZeroDivisionError:
+        print("can not be divided by zero")

@@ -1,3 +1,7 @@
+import math
+from ._glabal import EPSILON
+
+
 class Vector:
     def __init__(self, lst):
         self._values = lst
@@ -10,6 +14,16 @@ class Vector:
         """创建dim维的零向量"""
         return cls([0] * dim)
 
+    def norm(self):
+        """返回向量的模"""
+        return math.sqrt(sum(e ** 2 for e in self))
+
+    def normlize(self):
+        """归一化"""
+        if self.norm() < EPSILON:
+            raise ZeroDivisionError('norm can not be zero')
+        return Vector(self._values) / self.norm()
+
     # 向量相加
     def __add__(self, another):
         assert len(self) == len(another), \
@@ -17,11 +31,15 @@ class Vector:
         return Vector([a + b for a, b in zip(self, another)])
 
     def __mul__(self, k):
-        """向量乘以数量"""
+        """返回数量乘法的结果向量 k * self"""
         return Vector([k * x for x in self])
 
     def __rmul__(self, k):
         return self * k
+
+    def __truediv__(self, k):
+        """返回数量除法的结果向量 k / self"""
+        return (1 / k) * self
 
     def __pos__(self):
         return 1 * self
