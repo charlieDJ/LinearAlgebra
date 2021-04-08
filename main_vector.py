@@ -2,6 +2,9 @@ from playLA.Vector import Vector
 
 if __name__ == '__main__':
     u = Vector([5, 2])
-    print(u)
-    print(u.__getitem__(1))
-    print(u.__len__())
+    print(u * 3)
+    print(-u)
+
+    # 零向量
+    zero2 = Vector.zero(2)
+    print(zero2)
