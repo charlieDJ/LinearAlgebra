@@ -16,3 +16,7 @@ if __name__ == '__main__':
         zero2.normlize()
     except ZeroDivisionError:
         print("can not be divided by zero")
+
+    u1 = Vector([3, 1])
+    dot = u.dot(u1)
+    print('u和u1的点乘结果：{}'.format(dot))

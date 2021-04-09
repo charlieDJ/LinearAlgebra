@@ -30,6 +30,12 @@ class Vector:
             'two Vectors length is not same'
         return Vector([a + b for a, b in zip(self, another)])
 
+    def dot(self, another):
+        """点乘的实现方法 x1*x2+y1*y2"""
+        assert len(self) == len(another), \
+            'the vectors length must be the same'
+        return sum(a * b for a, b in zip(self, another))
+
     def __mul__(self, k):
         """返回数量乘法的结果向量 k * self"""
         return Vector([k * x for x in self])
