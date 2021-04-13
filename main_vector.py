@@ -10,10 +10,10 @@ if __name__ == '__main__':
     print('零向量：{}'.format(zero2))
     norm = u.norm()
     print('u的模为：{}'.format(norm))
-    normlize = u.normlize()
+    normlize = u.normalize()
     print('u的归一化：{}'.format(normlize))
     try:
-        zero2.normlize()
+        zero2.normalize()
     except ZeroDivisionError:
         print("can not be divided by zero")
 

@@ -18,7 +18,7 @@ class Vector:
         """返回向量的模"""
         return math.sqrt(sum(e ** 2 for e in self))
 
-    def normlize(self):
+    def normalize(self):
         """归一化"""
         if self.norm() < EPSILON:
             raise ZeroDivisionError('norm can not be zero')
