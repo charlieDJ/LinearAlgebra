@@ -6,6 +6,43 @@ class Matrix:
         """二维数组赋值为对象成员变量，为了防止浅拷贝，使用列表生成式赋值"""
         self._values = [row[:] for row in lst2]
 
+    @classmethod
+    def zero(cls, r, c):
+        """创建有r行，c列的零矩阵"""
+        return cls([[0] * c for _ in range(r)])
+
+    def __add__(self, another):
+        """两个矩阵相加"""
+        assert self.shape() == another.shape(), \
+            "error in adding, shape is not the same!"
+        return Matrix([[a + b for a, b in zip(self.row_vector(i), another.row_vector(i))]
+                       for i in range(self.row_num())])
+
+    def __sub__(self, another):
+        """两个矩阵相减"""
+        assert self.shape() == another.shape(), \
+            "error in adding, shape is not the same!"
+        return Matrix([[a - b for a, b in zip(self.row_vector(i), another.row_vector(i))]
+                       for i in range(self.row_num())])
+
+    def __mul__(self, k):
+        """矩阵与标量相乘"""
+        return Matrix([[e * k for e in self.row_vector(i)] for i in range(self.row_num())])
+
+    def __rmul__(self, k):
+        """标量与矩阵相乘"""
+        return self * k
+
+    def __truediv__(self, k):
+        """矩阵与标量相除"""
+        return (1 / k) * self
+
+    def __pos__(self):
+        return 1 * self
+
+    def __neg__(self):
+        return -1 * self
+
     def size(self):
         """返回矩阵的元素个数"""
         return self.row_num() * self.col_num()
