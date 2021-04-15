@@ -1,4 +1,5 @@
 from playLA.Matrix import Matrix
+from playLA.Vector import Vector
 
 if __name__ == '__main__':
     matrix = Matrix([[1, 2], [2, 3]])
@@ -16,4 +17,12 @@ if __name__ == '__main__':
     print("rMulti:{}".format(2 * matrix))
     print("div:{}".format(m2 / 2))
     print("neg:{}".format(-m2))
-    print("零向量:{}".format(Matrix.zero(3, 2)))
+    print("零矩阵:{}".format(Matrix.zero(3, 2)))
+
+    T = Matrix([[1.5, 0], [0, 2]])
+    p = Vector([5, 3])
+    print("T.dot(p) = {}".format(T.dot(p)))
+
+    T2 = Matrix([[0, 4, 5], [0, 0, 3]])
+    print("T.dot(T2) = {}".format(T.dot(T2)))
+

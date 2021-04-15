@@ -37,6 +37,20 @@ class Matrix:
         """矩阵与标量相除"""
         return (1 / k) * self
 
+    def dot(self, another):
+        """返回矩阵乘法的结果"""
+        if isinstance(another, Vector):
+            """矩阵乘以向量"""
+            assert self.col_num() == len(another), \
+                "Error in Matrix-Vector multiplication"
+            return Vector([self.row_vector(i).dot(another) for i in range(self.row_num())])
+        if isinstance(another, Matrix):
+            """"矩阵乘以矩阵"""
+            assert self.col_num() == another.row_num(), \
+                "Error in Matrix-Matrix multiplication"
+            return Matrix([[self.row_vector(i).dot(another.col_vector(j)) for j in range(another.col_num())]
+                           for i in range(self.row_num())])
+
     def __pos__(self):
         return 1 * self
 
