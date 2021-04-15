@@ -26,3 +26,5 @@ if __name__ == '__main__':
     T2 = Matrix([[0, 4, 5], [0, 0, 3]])
     print("T.dot(T2) = {}".format(T.dot(T2)))
 
+    print("转置：{}".format(T2.T()))
+
