@@ -31,7 +31,7 @@ class Vector:
         return Vector([a + b for a, b in zip(self, another)])
 
     def dot(self, another):
-        """点乘的实现方法 x1*x2+y1*y2"""
+        """点乘的实现方法 x1*x2+y1*y2，对应元素相乘再相加"""
         assert len(self) == len(another), \
             'the vectors length must be the same'
         return sum(a * b for a, b in zip(self, another))
