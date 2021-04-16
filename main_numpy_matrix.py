@@ -11,3 +11,9 @@ if __name__ == '__main__':
     print("M1矩阵列向量：{}".format(M1[:, 1]))
     M2 = np.array([[5, 6], [7, 8]])
     print("M1矩阵乘以M2矩阵：{}".format(M1.dot(M2)))
+
+    # 逆矩阵
+    invM = np.linalg.inv(M1)
+    print(invM)
+    print(invM.dot(np.identity(2)))
+    print(invM.dot(M1))

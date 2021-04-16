@@ -2,7 +2,7 @@ from playLA.Matrix import Matrix
 from playLA.Vector import Vector
 
 if __name__ == '__main__':
-    matrix = Matrix([[1, 2], [2, 3]])
+    matrix = Matrix([[1, 2], [3, 4]])
     print(matrix)
     print("矩阵的形状：{}".format(matrix.shape()))
     print("矩阵的行数：{}，矩阵的列数：{}".format(matrix.row_num(), matrix.col_num()))
@@ -28,3 +28,6 @@ if __name__ == '__main__':
 
     print("转置：{}".format(T2.T()))
 
+    I = Matrix.identity(2)
+    print("2行2列的单位矩阵：{}".format(I))
+    print("matrix乘以单位矩阵：{}".format(matrix.dot(I)))

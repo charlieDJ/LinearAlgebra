@@ -11,6 +11,15 @@ class Matrix:
         """创建有r行，c列的零矩阵"""
         return cls([[0] * c for _ in range(r)])
 
+    @classmethod
+    def identity(cls, n):
+        """返回一个n行n列的单位矩阵"""
+        m = [[0] * n for _ in range(n)]
+        for i in range(n):
+            """从左上到右下，只有i行i列是1，其余全部是0"""
+            m[i][i] = 1
+        return cls(m)
+
     def T(self):
         """转置矩阵，行转列，列转行"""
         return Matrix([[e for e in self.col_vector(i)] for i in range(self.col_num())])
