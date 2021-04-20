@@ -24,11 +24,21 @@ class Vector:
             raise ZeroDivisionError('norm can not be zero')
         return Vector(self._values) / self.norm()
 
+    def underlying_list(self):
+        """返回引用列表（列表副本）"""
+        return self._values
+
     # 向量相加
     def __add__(self, another):
         assert len(self) == len(another), \
             'two Vectors length is not same'
         return Vector([a + b for a, b in zip(self, another)])
+
+    # 向量相减
+    def __sub__(self, another):
+        assert len(self) == len(another), \
+            'two Vectors length is not same'
+        return Vector([a - b for a, b in zip(self, another)])
 
     def dot(self, another):
         """点乘的实现方法 x1*x2+y1*y2，对应元素相乘再相加"""

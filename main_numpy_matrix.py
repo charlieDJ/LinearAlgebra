@@ -17,3 +17,4 @@ if __name__ == '__main__':
     print(invM)
     print(invM.dot(np.identity(2)))
     print(invM.dot(M1))
+    print(M1.dot(invM))
