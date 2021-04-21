@@ -1,5 +1,5 @@
 import math
-from ._glabal import EPSILON
+from ._glabal import  is_zero
 
 
 class Vector:
@@ -20,7 +20,7 @@ class Vector:
 
     def normalize(self):
         """归一化"""
-        if self.norm() < EPSILON:
+        if is_zero(self.norm()):
             raise ZeroDivisionError('norm can not be zero')
         return Vector(self._values) / self.norm()
 
