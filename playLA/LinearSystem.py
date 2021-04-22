@@ -5,15 +5,22 @@ from ._glabal import is_zero
 
 class LinearSystem:
     def __init__(self, A, b):
-        assert A.row_num() == len(b), \
-            "Matrix A's row num must equals b's length!"
+
         self._m = A.row_num()
         self._n = A.col_num()
-        assert self._m == self._n  # todo no this restriction
 
-        """让A矩阵的第i行的末尾添加B向量第i个元素"""
-        self.Ab = [Vector(A.row_vector(i).underlying_list() + [b[i]])
-                   for i in range(self._m)]
+        if isinstance(b, Vector):
+            assert A.row_num() == len(b), \
+                "Matrix A's row num must equals b's length!"
+            """让A矩阵的第i行的末尾添加B向量第i个元素"""
+            self.Ab = [Vector(A.row_vector(i).underlying_list() + [b[i]])
+                       for i in range(self._m)]
+        if isinstance(b, Matrix):
+            assert A.shape() == b.shape(), \
+                "Matrix A's shape must equals b's shape!"
+            """让A矩阵的第i行的末尾添加B矩阵的i行"""
+            self.Ab = [Vector(A.row_vector(i).underlying_list() + b.row_vector(i).underlying_list())
+                       for i in range(self._m)]
         self.pivots = []
 
     # 查找index行index列最大的值
@@ -70,3 +77,18 @@ class LinearSystem:
         for i in range(self._m):
             print(" ".join(str(self.Ab[i][j]) for j in range(self._n)), end=" ")
             print("|", self.Ab[i][-1])
+
+
+# 求矩阵的逆
+def inv(A):
+    """非方阵，没有矩阵的逆"""
+    if A.row_num() != A.col_num():
+        return None
+    n = A.row_num()
+    ls = LinearSystem(A, Matrix.identity(n))
+    if not ls.gauss_jordan_elimination():
+        return None
+    """增广矩阵的右侧也是一个矩阵，左右矩阵的column都一样长"""
+    invA = [[row[i] for i in range(n, 2 * n)] for row in ls.Ab]
+    return Matrix(invA)
+

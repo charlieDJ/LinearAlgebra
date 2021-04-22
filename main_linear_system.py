@@ -1,4 +1,4 @@
-from playLA.LinearSystem import LinearSystem
+from playLA.LinearSystem import LinearSystem, inv
 from playLA.Matrix import Matrix
 from playLA.Vector import Vector
 
@@ -12,3 +12,7 @@ if __name__ == '__main__':
     else:
         print("has solution")
     ls.fancy_print()
+
+    A = Matrix([[1, 2], [3, 4]])
+    invA = inv(A)
+    print(invA)
